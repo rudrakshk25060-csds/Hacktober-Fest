@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: jobifc
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: GEMMA_MODEL
+        value: gemma3:4b
+      - key: GEMMA_API_URL
+        sync: false
